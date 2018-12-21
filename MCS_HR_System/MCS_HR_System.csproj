@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C1B381D-5A86-4C76-98A3-70D5A36F5AD6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MCS_HR_System</RootNamespace>
+    <AssemblyName>MCS_HR_System</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hr.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attendance.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Attendance1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Attendance1.Designer.cs">
+      <DependentUpon>Attendance1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendDialog.Designer.cs">
+      <DependentUpon>AttendDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Employee1.Designer.cs">
+      <DependentUpon>Employee1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Leave.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Leaves1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Leaves1.Designer.cs">
+      <DependentUpon>Leaves1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Leave_Type.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Main1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main1.Designer.cs">
+      <DependentUpon>Main1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main2.Designer.cs">
+      <DependentUpon>Main2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Max_Leave_Count.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Position.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Staff_Movements.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Staff_Movements.Designer.cs">
+      <DependentUpon>Staff_Movements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff_Movements1.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User1.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Attendance1.resx">
+      <DependentUpon>Attendance1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendDialog.resx">
+      <DependentUpon>AttendDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee1.resx">
+      <DependentUpon>Employee1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Leaves1.resx">
+      <DependentUpon>Leaves1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main1.resx">
+      <DependentUpon>Main1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main2.resx">
+      <DependentUpon>Main2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Staff_Movements.resx">
+      <DependentUpon>Staff_Movements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hr.ico" />
+    <Content Include="hr_s1v_icon.ico" />
+    <Content Include="hr__1__BfG_icon.ico" />
+    <Content Include="Img\close_en.png" />
+    <Content Include="Img\close_ex.png" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\magnifier %282%29.png" />
+    <None Include="Resources\move-arrows %281%29.png" />
+    <None Include="Resources\move-arrows.png" />
+    <None Include="Resources\minimize %281%29.png" />
+    <None Include="Resources\minus-sign-inside-a-square-outline.png" />
+    <None Include="Resources\hr-management-software-side-img-300x2331.png" />
+    <None Include="Resources\minimize.png" />
+    <None Include="Resources\icon.png" />
+    <None Include="Resources\subtraction.png" />
+    <None Include="Resources\sign-out-option.png" />
+    <None Include="Resources\calendar.png" />
+    <None Include="Resources\close %281%29.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\tf4.png" />
+    <None Include="Resources\tf3.png" />
+    <None Include="Resources\tf2.png" />
+    <None Include="Resources\tf.png" />
+    <None Include="Resources\tf1.png" />
+    <None Include="Resources\png-text-box-text-box-png-image-24063-1022.png" />
+    <None Include="Resources\frame1.png" />
+    <None Include="Resources\user1.png" />
+    <None Include="Resources\user_male2-512.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\magnifier %281%29.png" />
+    <None Include="Resources\exchange %281%29.png" />
+    <None Include="Resources\refresh-page-option %281%29.png" />
+    <None Include="Resources\refresh-page-option.png" />
+    <None Include="Resources\exchange.png" />
+    <None Include="Resources\refresh-arrows.png" />
+    <None Include="Resources\is-not-equal-to.png" />
+    <None Include="Resources\a1.png" />
+    <None Include="Resources\a2.png" />
+    <None Include="Resources\close_en1.png" />
+    <None Include="Resources\cancel %282%29.png" />
+    <None Include="Resources\checked %281%29.png" />
+    <None Include="Resources\refresh-button.png" />
+    <None Include="Resources\uch.png" />
+    <None Include="Resources\ch.png" />
+    <None Include="Resources\magnifier.png" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\delete1.png" />
+    <None Include="Resources\edit-document.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\save-file-option.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\hr-management-software-side-img-300x233.png" />
+    <None Include="Resources\calendar-icon.png" />
+    <None Include="Resources\list.png" />
+    <None Include="Resources\group %281%29.png" />
+    <None Include="Resources\group.png" />
+    <None Include="Resources\logo1.png" />
+    <None Include="Resources\hr.png" />
+    <None Include="Resources\shut-down-icon %281%29.png" />
+    <None Include="Resources\settings-work-tool %281%291.png" />
+    <None Include="Resources\settings-work-tool %281%29.png" />
+    <None Include="Resources\settings-work-tool.png" />
+    <None Include="Resources\shut-down-icon.png" />
+    <None Include="Resources\clipboard.png" />
+    <None Include="Resources\tasks.png" />
+    <None Include="Resources\close_en.png" />
+    <None Include="Resources\close_ex2.png" />
+    <None Include="Resources\close_ex1.png" />
+    <None Include="Resources\close_ex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

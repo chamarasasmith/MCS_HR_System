@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MCSHRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Enter_Time" Type="datetime" />
+          <Property Name="Exit_Time" Type="datetime" />
+          <Property Name="Emp_ID" Type="nchar" MaxLength="100" />
+          <Property Name="Date1" Type="datetime" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Emp_ID" />
+          </Key>
+          <Property Name="Emp_ID" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="First_Name" Type="nchar" MaxLength="100" />
+          <Property Name="Last_Name" Type="nchar" MaxLength="100" />
+          <Property Name="Personal_No" Type="nchar" MaxLength="20" />
+          <Property Name="Company_No" Type="nchar" MaxLength="20" />
+          <Property Name="Email" Type="nchar" MaxLength="500" />
+          <Property Name="Street" Type="nchar" MaxLength="1000" />
+          <Property Name="City" Type="nchar" MaxLength="200" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" />
+          <Property Name="BOD" Type="datetime" />
+          <Property Name="Joined_Date" Type="datetime" />
+          <Property Name="Resigned_Date" Type="datetime" />
+          <Property Name="Img" Type="image" />
+          <Property Name="Salary" Type="nchar" MaxLength="100" />
+          <Property Name="NIC" Type="nchar" MaxLength="20" />
+          <Property Name="Nationality" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="Leave_ID" />
+          </Key>
+          <Property Name="Leave_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emp_ID" Type="nchar" MaxLength="100" />
+          <Property Name="L_Date" Type="datetime" />
+          <Property Name="LT_ID" Type="int" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Leave_Type">
+          <Key>
+            <PropertyRef Name="LT_ID" />
+          </Key>
+          <Property Name="LT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Leave_Type" Type="nchar" MaxLength="100" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Max_Leave_Count">
+          <Key>
+            <PropertyRef Name="ML_ID" />
+          </Key>
+          <Property Name="ML_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emp_ID" Type="nchar" MaxLength="100" />
+          <Property Name="LT_ID" Type="int" />
+          <Property Name="LCount" Type="int" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Position_Title" Type="nchar" MaxLength="500" />
+          <Property Name="S_Date" Type="datetime" />
+          <Property Name="E_Date" Type="datetime" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Emp_ID" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Staff_Movements1">
+          <Key>
+            <PropertyRef Name="SM_ID" />
+          </Key>
+          <Property Name="SM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Emp_ID" Type="nchar" MaxLength="100" />
+          <Property Name="SM_Date" Type="date" />
+          <Property Name="S_Time" Type="datetime" />
+          <Property Name="E_Time" Type="datetime" />
+          <Property Name="Status1" Type="nchar" MaxLength="10" />
+          <Property Name="Place" Type="nchar" MaxLength="100" />
+          <Property Name="Reason1" Type="nchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User1">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="100" />
+          <Property Name="Password" Type="nchar" MaxLength="100" />
+          <Property Name="St" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Attendance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Leave_Type">
+          <End Role="Leave_Type" Type="Self.Leave_Type" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leave_Type">
+              <PropertyRef Name="LT_ID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="LT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Max_Leave_Count_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Max_Leave_Count" Type="Self.Max_Leave_Count" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Max_Leave_Count">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Max_Leave_Count_Leave_Type">
+          <End Role="Leave_Type" Type="Self.Leave_Type" Multiplicity="0..1" />
+          <End Role="Max_Leave_Count" Type="Self.Max_Leave_Count" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leave_Type">
+              <PropertyRef Name="LT_ID" />
+            </Principal>
+            <Dependent Role="Max_Leave_Count">
+              <PropertyRef Name="LT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Position_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Movements1_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Staff_Movements1" Type="Self.Staff_Movements1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Staff_Movements1">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MCSHRMModelStoreContainer">
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave_Type" EntityType="Self.Leave_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Max_Leave_Count" EntityType="Self.Max_Leave_Count" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff_Movements1" EntityType="Self.Staff_Movements1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User1" EntityType="Self.User1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Attendance_Employee" Association="Self.FK_Attendance_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Employee" Association="Self.FK_Leave_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Leave_Type" Association="Self.FK_Leave_Leave_Type">
+            <End Role="Leave_Type" EntitySet="Leave_Type" />
+            <End Role="Leave" EntitySet="Leave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Max_Leave_Count_Employee" Association="Self.FK_Max_Leave_Count_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Max_Leave_Count" EntitySet="Max_Leave_Count" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Max_Leave_Count_Leave_Type" Association="Self.FK_Max_Leave_Count_Leave_Type">
+            <End Role="Leave_Type" EntitySet="Leave_Type" />
+            <End Role="Max_Leave_Count" EntitySet="Max_Leave_Count" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Position_Employee" Association="Self.FK_Position_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Position" EntitySet="Position" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Movements1_Employee" Association="Self.FK_Staff_Movements1_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Staff_Movements1" EntitySet="Staff_Movements1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MCSHRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enter_Time" Type="DateTime" Precision="3" />
+          <Property Name="Exit_Time" Type="DateTime" Precision="3" />
+          <Property Name="Emp_ID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Date1" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Attendance_Employee" FromRole="Attendance" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Emp_ID" />
+          </Key>
+          <Property Name="Emp_ID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Personal_No" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Company_No" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="BOD" Type="DateTime" Precision="3" />
+          <Property Name="Joined_Date" Type="DateTime" Precision="3" />
+          <Property Name="Resigned_Date" Type="DateTime" Precision="3" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Salary" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Attendances" Relationship="Self.FK_Attendance_Employee" FromRole="Employee" ToRole="Attendance" />
+          <NavigationProperty Name="Leaves" Relationship="Self.FK_Leave_Employee" FromRole="Employee" ToRole="Leave" />
+          <NavigationProperty Name="Max_Leave_Count" Relationship="Self.FK_Max_Leave_Count_Employee" FromRole="Employee" ToRole="Max_Leave_Count" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_Position_Employee" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="Staff_Movements1" Relationship="Self.FK_Staff_Movements1_Employee" FromRole="Employee" ToRole="Staff_Movements1" />
+        </EntityType>
+        <EntityType Name="Leave">
+          <Key>
+            <PropertyRef Name="Leave_ID" />
+          </Key>
+          <Property Name="Leave_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emp_ID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="L_Date" Type="DateTime" Precision="3" />
+          <Property Name="LT_ID" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Leave_Employee" FromRole="Leave" ToRole="Employee" />
+          <NavigationProperty Name="Leave_Type" Relationship="Self.FK_Leave_Leave_Type" FromRole="Leave" ToRole="Leave_Type" />
+        </EntityType>
+        <EntityType Name="Leave_Type">
+          <Key>
+            <PropertyRef Name="LT_ID" />
+          </Key>
+          <Property Name="LT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Leave_Type1" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Leaves" Relationship="Self.FK_Leave_Leave_Type" FromRole="Leave_Type" ToRole="Leave" />
+          <NavigationProperty Name="Max_Leave_Count" Relationship="Self.FK_Max_Leave_Count_Leave_Type" FromRole="Leave_Type" ToRole="Max_Leave_Count" />
+        </EntityType>
+        <EntityType Name="Max_Leave_Count">
+          <Key>
+            <PropertyRef Name="ML_ID" />
+          </Key>
+          <Property Name="ML_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emp_ID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="LT_ID" Type="Int32" />
+          <Property Name="LCount" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Max_Leave_Count_Employee" FromRole="Max_Leave_Count" ToRole="Employee" />
+          <NavigationProperty Name="Leave_Type" Relationship="Self.FK_Max_Leave_Count_Leave_Type" FromRole="Max_Leave_Count" ToRole="Leave_Type" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Position_Title" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="S_Date" Type="DateTime" Precision="3" />
+          <Property Name="E_Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Emp_ID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Position_Employee" FromRole="Position" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Staff_Movements1">
+          <Key>
+            <PropertyRef Name="SM_ID" />
+          </Key>
+          <Property Name="SM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Emp_ID" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="SM_Date" Type="DateTime" Precision="0" />
+          <Property Name="S_Time" Type="DateTime" Precision="3" />
+          <Property Name="E_Time" Type="DateTime" Precision="3" />
+          <Property Name="Status1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Place" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Reason1" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Staff_Movements1_Employee" FromRole="Staff_Movements1" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User1">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="St" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Attendance_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Max_Leave_Count_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Max_Leave_Count" Type="Self.Max_Leave_Count" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Max_Leave_Count">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Position_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Movements1_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Staff_Movements1" Type="Self.Staff_Movements1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Emp_ID" />
+            </Principal>
+            <Dependent Role="Staff_Movements1">
+              <PropertyRef Name="Emp_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Leave_Type">
+          <End Role="Leave_Type" Type="Self.Leave_Type" Multiplicity="0..1" />
+          <End Role="Leave" Type="Self.Leave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leave_Type">
+              <PropertyRef Name="LT_ID" />
+            </Principal>
+            <Dependent Role="Leave">
+              <PropertyRef Name="LT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Max_Leave_Count_Leave_Type">
+          <End Role="Leave_Type" Type="Self.Leave_Type" Multiplicity="0..1" />
+          <End Role="Max_Leave_Count" Type="Self.Max_Leave_Count" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leave_Type">
+              <PropertyRef Name="LT_ID" />
+            </Principal>
+            <Dependent Role="Max_Leave_Count">
+              <PropertyRef Name="LT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MCSHRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attendances" EntityType="Self.Attendance" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Leaves" EntityType="Self.Leave" />
+          <EntitySet Name="Leave_Type" EntityType="Self.Leave_Type" />
+          <EntitySet Name="Max_Leave_Count" EntityType="Self.Max_Leave_Count" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="Staff_Movements1" EntityType="Self.Staff_Movements1" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="User1" EntityType="Self.User1" />
+          <AssociationSet Name="FK_Attendance_Employee" Association="Self.FK_Attendance_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Attendance" EntitySet="Attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Employee" Association="Self.FK_Leave_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Leave" EntitySet="Leaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Max_Leave_Count_Employee" Association="Self.FK_Max_Leave_Count_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Max_Leave_Count" EntitySet="Max_Leave_Count" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Position_Employee" Association="Self.FK_Position_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Movements1_Employee" Association="Self.FK_Staff_Movements1_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Staff_Movements1" EntitySet="Staff_Movements1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Leave_Type" Association="Self.FK_Leave_Leave_Type">
+            <End Role="Leave_Type" EntitySet="Leave_Type" />
+            <End Role="Leave" EntitySet="Leaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Max_Leave_Count_Leave_Type" Association="Self.FK_Max_Leave_Count_Leave_Type">
+            <End Role="Leave_Type" EntitySet="Leave_Type" />
+            <End Role="Max_Leave_Count" EntitySet="Max_Leave_Count" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MCSHRMModelStoreContainer" CdmEntityContainer="MCSHRMEntities">
+          <EntitySetMapping Name="Attendances">
+            <EntityTypeMapping TypeName="MCSHRMModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="Enter_Time" ColumnName="Enter_Time" />
+                <ScalarProperty Name="Exit_Time" ColumnName="Exit_Time" />
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="Date1" ColumnName="Date1" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="MCSHRMModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Personal_No" ColumnName="Personal_No" />
+                <ScalarProperty Name="Company_No" ColumnName="Company_No" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BOD" ColumnName="BOD" />
+                <ScalarProperty Name="Joined_Date" ColumnName="Joined_Date" />
+                <ScalarProperty Name="Resigned_Date" ColumnName="Resigned_Date" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaves">
+            <EntityTypeMapping TypeName="MCSHRMModel.Leave">
+              <MappingFragment StoreEntitySet="Leave">
+                <ScalarProperty Name="Leave_ID" ColumnName="Leave_ID" />
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="L_Date" ColumnName="L_Date" />
+                <ScalarProperty Name="LT_ID" ColumnName="LT_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leave_Type">
+            <EntityTypeMapping TypeName="MCSHRMModel.Leave_Type">
+              <MappingFragment StoreEntitySet="Leave_Type">
+                <ScalarProperty Name="LT_ID" ColumnName="LT_ID" />
+                <ScalarProperty Name="Leave_Type1" ColumnName="Leave_Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Max_Leave_Count">
+            <EntityTypeMapping TypeName="MCSHRMModel.Max_Leave_Count">
+              <MappingFragment StoreEntitySet="Max_Leave_Count">
+                <ScalarProperty Name="ML_ID" ColumnName="ML_ID" />
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="LT_ID" ColumnName="LT_ID" />
+                <ScalarProperty Name="LCount" ColumnName="LCount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="MCSHRMModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="Position_Title" ColumnName="Position_Title" />
+                <ScalarProperty Name="S_Date" ColumnName="S_Date" />
+                <ScalarProperty Name="E_Date" ColumnName="E_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff_Movements1">
+            <EntityTypeMapping TypeName="MCSHRMModel.Staff_Movements1">
+              <MappingFragment StoreEntitySet="Staff_Movements1">
+                <ScalarProperty Name="SM_ID" ColumnName="SM_ID" />
+                <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+                <ScalarProperty Name="SM_Date" ColumnName="SM_Date" />
+                <ScalarProperty Name="S_Time" ColumnName="S_Time" />
+                <ScalarProperty Name="E_Time" ColumnName="E_Time" />
+                <ScalarProperty Name="Status1" ColumnName="Status1" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Reason1" ColumnName="Reason1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MCSHRMModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User1">
+            <EntityTypeMapping TypeName="MCSHRMModel.User1">
+              <MappingFragment StoreEntitySet="User1">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="St" ColumnName="St" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
